@@ -1,10 +1,10 @@
 import './App.css';
-import CodeEditorWindow from './components/CodeEditorWindow';
+import Landing from './components/Landing';
 
 function App() {
   return (
     <div className="App">
-      <CodeEditorWindow />
+    <Landing/>
     </div>
   );
 }
