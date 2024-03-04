@@ -1,7 +1,7 @@
 import React from "react";
 import { customStyles } from "../constants/customStyles";
 import { languageOptions } from "../constants/languageOptions";
-import { Select } from "@mui/material";
+import Select from "react-select";
 
 const LanguagesDropdown = (props) => {
     const {onSelectChange} = props

@@ -2,11 +2,16 @@ import React from 'react'
 import { ToastContainer } from 'react-toastify'
 import CodeEditorWindow from './CodeEditorWindow'
 import LanguagesDropdown from './LanguagesDropdown'
+import ThemeDropdown from './ThemeDropdown';
 
 function Landing() {
     const onSelectChange = (sl) => {
         console.log("selected Option...", sl);
       };
+
+      function handleThemeChange(th) {
+        // We will come to the implementation later in the code
+      }
     return (
         <>
             <ToastContainer
@@ -25,7 +30,7 @@ function Landing() {
                     <LanguagesDropdown onSelectChange={onSelectChange} />
                 </div>
                 <div className="px-4 py-2">
-                    {/* <ThemeDropdown handleThemeChange={handleThemeChange} theme={theme} /> */}
+                    <ThemeDropdown handleThemeChange={handleThemeChange} theme={'cobalt'} />
                 </div>
             </div>
             <div className="flex flex-row space-x-4 items-start px-4 py-4">
