@@ -7,11 +7,13 @@ import ThemeDropdown from './ThemeDropdown';
 function Landing() {
     const onSelectChange = (sl) => {
         console.log("selected Option...", sl);
-      };
+    };
 
-      function handleThemeChange(th) {
-        // We will come to the implementation later in the code
-      }
+    function handleThemeChange(th) {
+        const theme = th;
+        console.log("theme...", theme);
+    }
+
     return (
         <>
             <ToastContainer
