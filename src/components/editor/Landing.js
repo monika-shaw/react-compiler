@@ -45,7 +45,7 @@ function Landing() {
             },
             data: formData,
         };
-        console.log(options.data);
+        //console.log(options.data);
         axios
             .request(options)
             .then(function (response) {
@@ -83,7 +83,7 @@ function Landing() {
                 setProcessing(false)
                 setOutputDetails(response.data)
                 showSuccessToast(`Compiled Successfully!`)
-                console.log('response.data', response.data)
+                //console.log('response.data', response.data)
                 return
             }
         } catch (err) {
