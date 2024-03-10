@@ -61,7 +61,6 @@ function Landing() {
     };
 
     const checkStatus = async (token) => {
-        // We will come to the implementation later in the code
     };
 
     const onChange = (action, data) => {
