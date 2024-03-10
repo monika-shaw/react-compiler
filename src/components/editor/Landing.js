@@ -49,7 +49,7 @@ function Landing() {
         axios
             .request(options)
             .then(function (response) {
-                console.log("res.data", response.data);
+                //console.log("res.data", response.data);
                 const token = response.data.token;
                 checkStatus(token);
             })
