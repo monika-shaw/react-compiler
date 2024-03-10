@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { ToastContainer } from 'react-toastify'
 import CodeEditorWindow from './CodeEditorWindow'
 import LanguagesDropdown from './LanguagesDropdown'
 import ThemeDropdown from './ThemeDropdown';
-
+import { defineTheme } from '../../utils/defineTheme';
 function Landing() {
+    const [theme, setTheme] = useState("cobalt");
     const onSelectChange = (sl) => {
         console.log("selected Option...", sl);
     };
@@ -12,8 +13,19 @@ function Landing() {
     function handleThemeChange(th) {
         const theme = th;
         console.log("theme...", theme);
+
+        if (["light", "vs-dark"].includes(theme.value)) {
+            setTheme(theme);
+        } else {
+            defineTheme(theme.value).then((_) => setTheme(theme));
+        }
     }
 
+    useEffect(() => {
+        defineTheme("oceanic-next").then((_) =>
+            setTheme({ value: "oceanic-next", label: "Oceanic Next" })
+        );
+    }, []);
     return (
         <>
             <ToastContainer
@@ -32,7 +44,7 @@ function Landing() {
                     <LanguagesDropdown onSelectChange={onSelectChange} />
                 </div>
                 <div className="px-4 py-2">
-                    <ThemeDropdown handleThemeChange={handleThemeChange} theme={'cobalt'} />
+                    <ThemeDropdown handleThemeChange={handleThemeChange} theme={theme} />
                 </div>
             </div>
             <div className="flex flex-row space-x-4 items-start px-4 py-4">
@@ -41,7 +53,7 @@ function Landing() {
                         code={"code"}
                         onChange={"onChange"}
                         language={"language?.value"}
-                        theme={"theme.value"}
+                        theme={theme.value}
                     />
                 </div>
                 {/* <div className="right-container flex flex-shrink-0 w-[30%] flex-col">
