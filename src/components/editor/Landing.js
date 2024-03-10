@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { ToastContainer } from 'react-toastify'
+import { ToastContainer , toast} from 'react-toastify'
 import CodeEditorWindow from './CodeEditorWindow'
 import LanguagesDropdown from './LanguagesDropdown'
 import ThemeDropdown from './ThemeDropdown';
@@ -12,6 +12,7 @@ import OutputWindow from './OutputWindow';
 import useKeyPress from '../../hooks/useKeyPress';
 import axios from "axios";
 const javascriptDefault = `// some comment`;
+
 function Landing() {
     const [code, setCode] = useState(javascriptDefault);
     const [customInput, setCustomInput] = useState("");
@@ -29,7 +30,6 @@ function Landing() {
         setProcessing(true);
         const formData = {
             language_id: language.id,
-            // encode source code in base64
             source_code: btoa(code),
             stdin: btoa(customInput),
         };
@@ -61,6 +61,36 @@ function Landing() {
     };
 
     const checkStatus = async (token) => {
+        const options = {
+            method: "GET",
+            url: process.env.REACT_APP_RAPID_API_URL + "/" + token,
+            params: { base64_encoded: "true", fields: "*" },
+            headers: {
+                "X-RapidAPI-Host": process.env.REACT_APP_RAPID_API_HOST,
+                "X-RapidAPI-Key": process.env.REACT_APP_RAPID_API_KEY,
+            },
+        };
+        try {
+            let response = await axios.request(options);
+            let statusId = response.data.status?.id;
+
+            if (statusId === 1 || statusId === 2) {
+                setTimeout(() => {
+                    checkStatus(token)
+                }, 2000)
+                return
+            } else {
+                setProcessing(false)
+                setOutputDetails(response.data)
+                showSuccessToast(`Compiled Successfully!`)
+                console.log('response.data', response.data)
+                return
+            }
+        } catch (err) {
+            console.log("err", err);
+            setProcessing(false);
+            showErrorToast();
+        }
     };
 
     const onChange = (action, data) => {
@@ -98,6 +128,29 @@ function Landing() {
             handleCompile();
         }
     }, [ctrlPress, enterPress]);
+
+    const showSuccessToast = (msg) => {
+        toast.success(msg || `Compiled Successfully!`, {
+            position: "top-right",
+            autoClose: 1000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
+    };
+    const showErrorToast = (msg, timer) => {
+        toast.error(msg || `Something went wrong! Please try again.`, {
+            position: "top-right",
+            autoClose: timer ? timer : 1000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
+    };
     return (
         <>
             <ToastContainer
@@ -149,7 +202,6 @@ function Landing() {
                     {outputDetails && <OutputDetails outputDetails={outputDetails} />}
                 </div>
             </div>
-            {/* <Footer/> */}
         </>
 
     )
