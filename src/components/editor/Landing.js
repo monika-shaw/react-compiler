@@ -20,6 +20,7 @@ function Landing() {
     const [processing, setProcessing] = useState(null);
     const [theme, setTheme] = useState("cobalt");
     const [language, setLanguage] = useState(languageOptions[0]);
+
     const onSelectChange = (sl) => {
         console.log("selected Option...", sl);
     };
@@ -45,11 +46,9 @@ function Landing() {
             },
             data: formData,
         };
-        //console.log(options.data);
         axios
             .request(options)
             .then(function (response) {
-                //console.log("res.data", response.data);
                 const token = response.data.token;
                 checkStatus(token);
             })
