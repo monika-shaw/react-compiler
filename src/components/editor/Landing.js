@@ -129,15 +129,15 @@ function Landing() {
     }, [ctrlPress, enterPress]);
 
     const showSuccessToast = (msg) => {
-        toast.success(msg || `Compiled Successfully!`, {
-            position: "top-right",
-            autoClose: 1000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-        });
+        // toast.success(msg || `Compiled Successfully!`, {
+        //     position: "top-right",
+        //     autoClose: 1000,
+        //     hideProgressBar: false,
+        //     closeOnClick: true,
+        //     pauseOnHover: true,
+        //     draggable: true,
+        //     progress: undefined,
+        // });
     };
     const showErrorToast = (msg, timer) => {
         toast.error(msg || `Something went wrong! Please try again.`, {
@@ -171,8 +171,8 @@ function Landing() {
                     <ThemeDropdown handleThemeChange={handleThemeChange} theme={theme} />
                 </div>
             </div>
-            <div className="flex flex-row space-x-4 items-start px-4 py-4">
-                <div className="flex flex-col w-full h-full justify-start items-end">
+            <div className="flex flex-row space-x-4 items-start px-4 py-4" >
+                <div className="flex flex-col w-full h-full justify-start items-end"style={{width:'40%', height:'10vh'}}>
                     <CodeEditorWindow
                         code={code}
                         onChange={onChange}
