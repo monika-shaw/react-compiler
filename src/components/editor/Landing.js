@@ -11,6 +11,7 @@ import OutputDetails from './OutputDetails';
 import OutputWindow from './OutputWindow';
 import useKeyPress from '../../hooks/useKeyPress';
 import axios from "axios";
+import { Grid } from '@mui/material';
 const javascriptDefault = `// some comment`;
 
 function Landing() {
@@ -152,6 +153,12 @@ function Landing() {
     };
     return (
         <>
+        <Grid>
+            <Grid container item xs={12}>
+                <Grid item xs={8} style={{background:'black', color:'white', padding:'1rem'}}>Code Bee</Grid>
+                <Grid item xs={4} style={{background:'black', color:'white', padding:'1rem'}}>Logo</Grid>
+            </Grid>
+        </Grid>
             <ToastContainer
                 position="top-right"
                 autoClose={2000}
