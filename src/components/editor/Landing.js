@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { ToastContainer , toast} from 'react-toastify'
+import { ToastContainer, toast } from 'react-toastify'
 import CodeEditorWindow from './CodeEditorWindow'
 import LanguagesDropdown from './LanguagesDropdown'
 import ThemeDropdown from './ThemeDropdown';
@@ -12,6 +12,8 @@ import OutputWindow from './OutputWindow';
 import useKeyPress from '../../hooks/useKeyPress';
 import axios from "axios";
 import { Grid } from '@mui/material';
+import { eventWrapper } from '@testing-library/user-event/dist/utils';
+import monacoThemes from "monaco-themes/themes/themelist";
 const javascriptDefault = `// some comment`;
 
 function Landing() {
@@ -105,14 +107,14 @@ function Landing() {
             }
         }
     };
-    function handleThemeChange(th) {
-        const theme = th;
-        console.log("theme...", theme);
-
-        if (["light", "vs-dark"].includes(theme.value)) {
-            setTheme(theme);
-        } else {
-            defineTheme(theme.value).then((_) => setTheme(theme));
+    async function handleThemeChange(event) {
+        const selectedThemeId = event.target.value;
+        for (const [themeId, themeName] of Object.entries(monacoThemes)) {
+            if (themeId === selectedThemeId) {
+                await defineTheme(themeId);
+                setTheme({ value: themeId, label: themeName });
+                break;
+            }
         }
     }
 
@@ -154,12 +156,12 @@ function Landing() {
     };
     return (
         <>
-        <Grid>
-            <Grid container item xs={12}>
-                <Grid item xs={8} style={{background:'black', color:'white', padding:'1rem'}}>Code Bee</Grid>
-                <Grid item xs={4} style={{background:'black', color:'white', padding:'1rem'}}>Logo</Grid>
+            <Grid>
+                <Grid container item xs={12}>
+                    <Grid item xs={8} style={{ background: 'black', color: 'white', padding: '1rem' }}>Code Bee</Grid>
+                    <Grid item xs={4} style={{ background: 'black', color: 'white', padding: '1rem' }}>Logo</Grid>
+                </Grid>
             </Grid>
-        </Grid>
             <ToastContainer
                 position="top-right"
                 autoClose={2000}
@@ -172,14 +174,14 @@ function Landing() {
                 pauseOnHover />
             <div className="flex flex-row">
                 <div className="px-4 py-2">
-                    <LanguagesDropdown onSelectChange={onSelectChange} language={language?.id}/>
+                    <LanguagesDropdown onSelectChange={onSelectChange} language={language?.id} />
                 </div>
                 <div className="px-4 py-2">
                     <ThemeDropdown handleThemeChange={handleThemeChange} theme={theme} />
                 </div>
             </div>
             <div className="flex flex-row space-x-4 items-start px-4 py-4" >
-                <div className="flex flex-col w-full h-full justify-start items-end"style={{width:'40%', height:'10vh'}}>
+                <div className="flex flex-col w-full h-full justify-start items-end" style={{ width: '40%', height: '10vh' }}>
                     <CodeEditorWindow
                         code={code}
                         onChange={onChange}
