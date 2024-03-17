@@ -8,7 +8,7 @@ const ThemeDropdown = ({ handleThemeChange, theme }) => {
   return (
     <Grid container item xs={12}>
       <TextField
-        placeholder={`Select Theme`}
+        label={`Select Theme`}
         select
         value={theme.value}
         SelectProps={{ styles: customStyles }}

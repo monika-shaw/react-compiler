@@ -52,7 +52,6 @@ const monacoThemes = {
 };
 
 const defineTheme = (theme) => {
-    console.log(theme);
     return new Promise((res) => {
         Promise.all([
             loader.init(),

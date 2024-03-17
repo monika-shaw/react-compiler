@@ -14,7 +14,7 @@ function CodeEditorWindow(props) {
     return (
         <Grid item xs={12} style={{width:'100%'}}>
             <Editor
-                height={"80vh"}
+                height={"78vh"}
                 width={"100%"}
                 language={language || "javascript"}
                 value={userInput}

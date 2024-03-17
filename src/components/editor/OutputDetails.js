@@ -1,27 +1,26 @@
+import { Grid, Typography } from "@mui/material";
 import React from "react";
 
 const OutputDetails = ({ outputDetails }) => {
     return (
-        <div className="metrics-container mt-4 flex flex-col space-y-3">
-            <p className="text-sm">
-                Status:{" "}
-                <span className="font-semibold px-2 py-1 rounded-md bg-gray-100">
-                    {outputDetails?.status?.description}
-                </span>
-            </p>
-            <p className="text-sm">
-                Memory:{" "}
-                <span className="font-semibold px-2 py-1 rounded-md bg-gray-100">
-                    {outputDetails?.memory}
-                </span>
-            </p>
-            <p className="text-sm">
-                Time:{" "}
-                <span className="font-semibold px-2 py-1 rounded-md bg-gray-100">
-                    {outputDetails?.time}
-                </span>
-            </p>
-        </div>
+
+        <Grid item xs={12} style={{padding:'2rem'}}>
+            <Grid container item xs={12}>
+                <Grid item xs={2}  style={{textAlign:'start'}}><Typography>Status : </Typography></Grid>
+                <Grid item xs={10} style={{textAlign:'start'}}><Typography style={{fontWeight:'bold'}}> {outputDetails?.status?.description}</Typography></Grid>
+            </Grid>
+
+            <Grid container item xs={12}>
+                <Grid item xs={2}  style={{textAlign:'start'}}><Typography>Memory : </Typography></Grid>
+                <Grid item xs={10} style={{textAlign:'start'}}><Typography style={{fontWeight:'bold'}}> {outputDetails?.memory}</Typography></Grid>
+            </Grid>
+
+            <Grid container item xs={12}>
+                <Grid item xs={2} style={{textAlign:'start'}}><Typography>Time : </Typography></Grid>
+                <Grid item xs={10} style={{textAlign:'start'}}><Typography style={{fontWeight:'bold'}}>{outputDetails?.time}</Typography></Grid>
+            </Grid>
+        </Grid>
+
     );
 };
 

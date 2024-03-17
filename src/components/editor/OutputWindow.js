@@ -1,3 +1,4 @@
+import { Grid, Typography } from "@mui/material";
 import React from "react";
 
 const OutputWindow = ({ outputDetails }) => {
@@ -33,14 +34,14 @@ const OutputWindow = ({ outputDetails }) => {
         }
     };
     return (
-        <>
-            <h1 className="font-bold text-xl bg-clip-text text-transparent bg-gradient-to-r from-slate-900 to-slate-700 mb-2">
-                Output
-            </h1>
-            <div className="w-full h-56 bg-[#1e293b] rounded-md text-white font-normal text-sm overflow-y-auto">
+        <Grid item xs={12}>
+            <Grid item xs={12}>
+                <Typography style={{fontWeight:'bold', fontSize:'1.5rem'}}>Output Window</Typography>
+            </Grid>
+            <Grid item xs={12} style={{background:'black', padding:'2rem', margin:'2rem', borderRadius:'0.5rem', color:'white', height:'20vh', display:'flex', justifyContent:'center'}}>
                 {outputDetails ? <>{getOutput()}</> : null}
-            </div>
-        </>
+            </Grid>
+        </Grid>
     );
 };
 
