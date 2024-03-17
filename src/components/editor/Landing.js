@@ -20,10 +20,11 @@ function Landing() {
     const [outputDetails, setOutputDetails] = useState(null);
     const [processing, setProcessing] = useState(null);
     const [theme, setTheme] = useState("cobalt");
-    const [language, setLanguage] = useState(languageOptions[0]);
+    const [language, setLanguage] = useState(languageOptions[0].id);
 
-    const onSelectChange = (sl) => {
-        console.log("selected Option...", sl);
+    const onSelectChange = (event) => {
+        console.log("selected Option...", event.target.value);
+        setLanguage(event.target.value)
     };
 
     const enterPress = useKeyPress("Enter");
@@ -169,10 +170,9 @@ function Landing() {
                 pauseOnFocusLoss
                 draggable
                 pauseOnHover />
-            <div className="h-4 w-full bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500"></div>
             <div className="flex flex-row">
                 <div className="px-4 py-2">
-                    <LanguagesDropdown onSelectChange={onSelectChange} />
+                    <LanguagesDropdown onSelectChange={onSelectChange} language={language}/>
                 </div>
                 <div className="px-4 py-2">
                     <ThemeDropdown handleThemeChange={handleThemeChange} theme={theme} />
