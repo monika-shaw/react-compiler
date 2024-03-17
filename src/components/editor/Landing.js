@@ -20,11 +20,11 @@ function Landing() {
     const [outputDetails, setOutputDetails] = useState(null);
     const [processing, setProcessing] = useState(null);
     const [theme, setTheme] = useState("cobalt");
-    const [language, setLanguage] = useState(languageOptions[0].id);
+    const [language, setLanguage] = useState(languageOptions[0]);
 
     const onSelectChange = (event) => {
         console.log("selected Option...", event.target.value);
-        setLanguage(event.target.value)
+        setLanguage(languageOptions.find(data => data.id === event.target.value))
     };
 
     const enterPress = useKeyPress("Enter");
@@ -172,7 +172,7 @@ function Landing() {
                 pauseOnHover />
             <div className="flex flex-row">
                 <div className="px-4 py-2">
-                    <LanguagesDropdown onSelectChange={onSelectChange} language={language}/>
+                    <LanguagesDropdown onSelectChange={onSelectChange} language={language?.id}/>
                 </div>
                 <div className="px-4 py-2">
                     <ThemeDropdown handleThemeChange={handleThemeChange} theme={theme} />

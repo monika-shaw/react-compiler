@@ -1,12 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import { customStyles } from "../constants/customStyles";
 import { languageOptions } from "../constants/languageOptions";
-import Select from "react-select";
 import { Grid, MenuItem, TextField } from "@mui/material";
 
 const LanguagesDropdown = (props) => {
     const {onSelectChange, language} = props
-    console.log(language);
+ 
     return (
 
         <Grid container item xs={12}>
@@ -18,11 +17,11 @@ const LanguagesDropdown = (props) => {
         size="small"
         styles={customStyles}
         value={language}
-        onChange={(selectedOption) => onSelectChange(selectedOption)}
+        onChange={(event) => onSelectChange(event)}
         
         >
         {languageOptions.map((data)=>( 
-            <MenuItem key={data.id}>{data.label}</MenuItem>
+            <MenuItem value={data.id} key={data.id}>{data.label}</MenuItem>
         ))}
         </TextField>
         </Grid>
