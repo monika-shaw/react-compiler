@@ -232,14 +232,14 @@ function Landing() {
                                 setCustomInput={setCustomInput}
                             />
                         </Grid>
-                        <Grid item xs={12}>
+                        <Grid item xs={12} style={{padding:'0rem 2rem', display:'flex', justifyContent:'center'}}>
                             <Button
                                 style={{ background: '#2ecc71' }}
                                 variant='contained'
                                 onClick={handleCompile}
                                 disabled={!code}
                             >
-                                {processing ? "Processing..." : "Compile and Execute"}
+                                <Typography>{processing ? "Processing..." : "Compile and Execute"}</Typography>
                             </Button>
                         </Grid>
                         <Grid item xs={12}>
