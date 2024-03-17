@@ -19,7 +19,7 @@ function Landing() {
     const [customInput, setCustomInput] = useState("");
     const [outputDetails, setOutputDetails] = useState(null);
     const [processing, setProcessing] = useState(null);
-    const [theme, setTheme] = useState("cobalt");
+    const [theme, setTheme] = useState({ value: "oceanic-next", label: "Oceanic Next" });
     const [language, setLanguage] = useState(languageOptions[0]);
 
     const onSelectChange = (event) => {
