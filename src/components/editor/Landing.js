@@ -156,42 +156,36 @@ function Landing() {
     };
     return (
         <>
-            <Grid>
+            <Grid item xs={12}>
                 <Grid container item xs={12}>
                     <Grid item xs={8} style={{ background: 'black', color: 'white', padding: '1rem' }}>Code Bee</Grid>
                     <Grid item xs={4} style={{ background: 'black', color: 'white', padding: '1rem' }}>Logo</Grid>
                 </Grid>
-            </Grid>
-            <ToastContainer
-                position="top-right"
-                autoClose={2000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover />
-            <div className="flex flex-row">
-                <div className="px-4 py-2">
-                    <LanguagesDropdown onSelectChange={onSelectChange} language={language?.id} />
-                </div>
-                <div className="px-4 py-2">
-                    <ThemeDropdown handleThemeChange={handleThemeChange} theme={theme} />
-                </div>
-            </div>
-            <div className="flex flex-row space-x-4 items-start px-4 py-4" >
-                <div className="flex flex-col w-full h-full justify-start items-end" style={{ width: '40%', height: '10vh' }}>
-                    <CodeEditorWindow
-                        code={code}
-                        onChange={onChange}
-                        language={language?.value}
-                        theme={theme.value}
-                    />
-                </div>
-                <div className="right-container flex flex-shrink-0 w-[30%] flex-col">
-                    <OutputWindow outputDetails={outputDetails} />
-                    <div className="flex flex-col items-end">
+
+                <Grid container item xs={12}>
+                    <Grid container item xs={4}>
+                        <Grid item xs={6}>
+                            <LanguagesDropdown onSelectChange={onSelectChange} language={language?.id} />
+                        </Grid>
+                        <Grid item xs={6}>
+                            <ThemeDropdown handleThemeChange={handleThemeChange} theme={theme} />
+                        </Grid>
+                    </Grid>
+                    <Grid item xs={8}></Grid>
+                </Grid>
+
+                <Grid container item xs={12}>
+                    <Grid container item xs={8}>
+                        <CodeEditorWindow
+                            code={code}
+                            onChange={onChange}
+                            language={language?.value}
+                            theme={theme.value}
+                        />
+                    </Grid>
+
+                    <Grid item xs={4}>
+                        <OutputWindow outputDetails={outputDetails} />
                         <CustomInput
                             customInput={customInput}
                             setCustomInput={setCustomInput}
@@ -206,10 +200,21 @@ function Landing() {
                         >
                             {processing ? "Processing..." : "Compile and Execute"}
                         </button>
-                    </div>
-                    {outputDetails && <OutputDetails outputDetails={outputDetails} />}
-                </div>
-            </div>
+                        {outputDetails && <OutputDetails outputDetails={outputDetails} />}
+                    </Grid>
+                </Grid>
+
+            </Grid>
+            <ToastContainer
+                position="top-right"
+                autoClose={2000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover />
         </>
 
     )

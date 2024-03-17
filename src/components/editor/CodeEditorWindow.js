@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Editor } from '@monaco-editor/react'
+import { Grid } from '@mui/material'
 
 function CodeEditorWindow(props) {
     const { onChange, language, code, theme } = props
@@ -11,9 +12,9 @@ function CodeEditorWindow(props) {
         onChange("code", val)
     }
     return (
-        <div className='overlay rounded-md overflow-hidden w-full h-full shadow-4xl'>
+        <Grid item xs={12} style={{width:'100%'}}>
             <Editor
-                height={"85vh"}
+                height={"80vh"}
                 width={"100%"}
                 language={language || "javascript"}
                 value={userInput}
@@ -21,7 +22,7 @@ function CodeEditorWindow(props) {
                 defaultValue=''
                 onChange={onChangeEditor}
             />
-        </div>
+        </Grid>
     )
 }
 
